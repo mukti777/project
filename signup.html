@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link rel="stylesheet" href="css/signup.css">
+            <!-- icon website link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+     body{
+        background-image: url("images/foods.webp");
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        }
+</style>
+<body>
+    <div class="div2"> 
+        <div class="form signup">
+            <div class="form-content">
+                <header>Signup</header>
+                <form action="signup.php" method="Post">
+                    <div class="field input-field">
+                        <label class="emailBox">
+                        <input type="Email" name="email" placeholder="E-mail" id="email">
+                        <span class="emailText"></span>
+                        </label>
+                        
+                        <div class="field input-field">
+                            <label class="passBox">
+                            <input type="password" name="password" placeholder="Create Password" class="password">
+                            <i class="fa-regular fa-eye-slash Eyecon"></i>
+                            <!-- <span class="passText"></span> -->
+                            </label>
+                            
+                            <label class="passBox"></label>
+                            <div class="field input-field">
+                                <input type="confirm_password" name="c_password" placeholder="Confirm Password" class="confirm_password">
+                                <!-- <i class="fa-regular fa-eye-slash Eyecon"></i> -->
+                                <span class="passText"></span> 
+                            </label>
+                        <div class="field button-field">
+                            <button onclick="data()">Signup</button>
+                        <div class="form-link">
+                        <span>Already have an account? <a href="login.html" class=" link signup-link">Login</a></span>
+                        </div>    
+                    </div>
+                </form>
+            </div>
+        <div class="line1"></div>
+</div>
+<script>
+    //  Password Hide and unhide
+const Eyecon = document.querySelectorAll(".Eyecon");
+const x = document.querySelectorAll(".password");
+for(let i=0;i<Eyecon.length;i++){
+    Eyecon[i].addEventListener('click',()=>{
+        if(x[i].type === "password"){
+            x[i].type="text"
+            Eyecon[i].classList.add('fa-eye');
+            Eyecon[i].classList.remove('fa-eye-slash');
+        }
+        else{
+            x[i].type="password"
+            Eyecon[i].classList.remove('fa-eye')
+            Eyecon[i].classList.add('fa-eye-slash')
+        }
+    })
+}
+
+ //    text validation for email and pass
+const email = document.getElementById("email");
+const password = document.querySelector(".password");
+
+email.addEventListener('input',()=>{
+    const emailBox = document.querySelector(".emailBox");
+    const emailText = document.querySelector(".emailText");
+    const emailPattern = /[A-za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$/;
+
+    if(email.value.match(emailPattern)){
+        emailBox.classList.add('valid');
+        emailBox.classList.remove('invalid');
+        emailText.innerHTML = "Your e-mail address is valid.";
+    }else{
+        emailBox.classList.add('invalid');
+        emailBox.classList.remove('valid');
+        emailText.innerHTML = "Must be valid email address.";
+    }
+});
+
+password.addEventListener('input',()=>{
+    const passBox = document.querySelector(".passBox");
+    const passText = document.querySelector(".passText");
+    const passPattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+
+    if(password.value.match(passPattern)){
+        passBox.classList.add('valid');
+        passBox.classList.remove('invalid');
+        passText.innerHTML = "Password is Perfect";
+    }else{
+        passBox.classList.add('invalid');
+        passBox.classList.remove('valid');
+        passText.innerHTML = "Your password must be at least 8 character as well as 1 upper and 1 lower-case with number .";
+    }
+});
+
+// All fielld must be fillup validation 
+function data()
+{
+ var email=document.getElementById("email").value;
+ var password=document.querySelector(".password").value;
+ var confirm_password=document.querySelector(".confirm_password").value;
+
+ if(email==""||password==""||confirm_password=="")
+ {
+    alert("All Fields must be fill up");
+ }
+ else if(password!=confirm_password){
+    alert ("Please enter same password");
+    return false;
+ }
+}
+</script>
+
+</body>
+</html>
+
+
+
